@@ -17,25 +17,69 @@
 <body class="bg-gray-50 min-h-screen">
 
   <!-- Header (same as before) -->
-  <header class="fixed top-0 w-full bg-white shadow-md z-50 border-b border-blue-100">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <i data-lucide="waves" class="w-10 h-10 md:w-12 md:h-12 text-[#015b8a]"></i>
-        <div class="text-2xl md:text-4xl font-bold text-[#015b8a]" style="font-family: 'Apple Chancery', cursive;">MantaFlow</div>
+<header class="fixed top-0 w-full bg-white shadow-md z-50 border-b border-blue-100">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <i data-lucide="waves"
+         class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#015b8a]"></i>
+      <div class="text-xl sm:text-2xl md:text-4xl font-bold text-[#015b8a]"
+           style="font-family: 'Apple Chancery', cursive;">
+        MantaFlow
       </div>
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="index.php" class="hover:text-[#015b8a]">Home</a>
-        <a href="event.php" class="hover:text-[#015b8a]">Events</a>
-        <a href="login.php" class="bg-[#015b8a] text-white px-6 py-2 rounded-full hover:bg-[#014a70]">Login</a>
-      </div>
-      <button id="menu-btn" class="md:hidden text-[#015b8a] text-3xl">Menu</button>
-    </nav>
-    <div id="mobile-menu" class="hidden bg-white md:hidden border-t">
-      <a href="index.php" class="block px-6 py-3 hover:bg-gray-100">Home</a>
-      <a href="event.php" class="block px-6 py-3 hover:bg-gray-100">Events</a>
-      <a href="login.php" class="block px-6 py-3 bg-[#015b8a] text-white">Login</a>
     </div>
-  </header>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center space-x-8 font-medium">
+      <a href="index.php" class="hover:text-[#015b8a] transition">Home</a>
+      <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
+      <a href="index.php#species" class="hover:text-[#015b8a] transition">Species</a>
+      <a href="Threats.php" class="hover:text-[#015b8a] transition">Threats</a>
+      <a href="event.php" class="hover:text-[#015b8a] transition">Events</a>
+      <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
+      <a href="login.php"
+         class="bg-[#015b8a] text-white px-6 py-2 rounded-full hover:bg-[#014a70] transition">
+        Login
+      </a>
+    </div>
+
+    <!-- Mobile Button -->
+    <button id="menu-btn"
+      class="md:hidden text-[#015b8a] text-3xl focus:outline-none">
+      ☰
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+       class="hidden md:hidden bg-white border-t shadow-md">
+    <a href="index.php" class="block px-6 py-3 hover:bg-gray-100">Home</a>
+    <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
+    <a href="index.php#species" class="block px-6 py-3 hover:bg-gray-100">Species</a>
+    <a href="Threats.php" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
+    <a href="event.php" class="block px-6 py-3 hover:bg-gray-100">Events</a>
+    <a href="login.php"
+       class="block px-6 py-3 bg-[#015b8a] text-white text-center">
+      Login
+    </a>
+  </div>
+</header>
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Close mobile menu when resizing to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>
 
   <!-- Hero -->
   <section class="ocean-gradient text-white py-24 text-center">

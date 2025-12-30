@@ -22,37 +22,65 @@
 </head>
 <body class="bg-gray-50">
 
-  <!-- Navbar -->
-  <header class="fixed top-0 w-full bg-white shadow-md z-50 border-b border-blue-100">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center justify-center gap-3">
-        <i data-lucide="waves" class="w-12 h-12 text-[#015b8a] drop-shadow-md"></i>
-        <div class="text-4xl font-bold text-[#015b8a] tracking-wide drop-shadow-md" style="font-family: 'Apple Chancery', cursive;">
-          MantaFlow
-        </div>
-      </div>
+ <!-- Navbar -->
+<header class="fixed top-0 w-full bg-white shadow-md z-50 border-b border-blue-100">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
 
-      <div class="hidden md:flex space-x-8 text-gray-700 font-medium">
-        <a href="index.php#home" class="hover:text-[#015b8a] transition">Home</a>
-        <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
-        <a href="index.php#species" class="hover:text-[#015b8a] transition">Species</a>
-        <a href="index.php#threats" class="hover:text-[#015b8a] transition">Threats</a>
-        <a href="event.php" class="hover:text-[#015b8a] transition">Events</a>
-        <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
+    <!-- Logo -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <i data-lucide="waves"
+         class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#015b8a] drop-shadow-md"></i>
+      <div class="text-xl sm:text-2xl md:text-4xl font-bold text-[#015b8a] tracking-wide drop-shadow-md"
+           style="font-family: 'Apple Chancery', cursive;">
+        MantaFlow
       </div>
-      <button id="menu-btn" class="md:hidden text-[#015b8a] text-2xl">Menu</button>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-white shadow-md border-t border-gray-100 md:hidden">
-      <a href="index.php#home" class="block px-6 py-3 hover:bg-gray-100">Home</a>
-      <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
-      <a href="index.php#species" class="block px-6 py-3 hover:bg-gray-100">Species</a>
-      <a href="index.php#threats" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
-      <a href="event.php" class="block px-6 py-3 hover:bg-gray-100">Events</a>
-      <a href="index.php#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
     </div>
-  </header>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-6 lg:space-x-8 text-gray-700 font-medium">
+      <a href="index.php#home" class="hover:text-[#015b8a] transition">Home</a>
+      <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
+      <a href="index.php#species" class="hover:text-[#015b8a] transition">Species</a>
+      <a href="index.php#threats" class="hover:text-[#015b8a] transition">Threats</a>
+      <a href="event.php" class="hover:text-[#015b8a] transition">Events</a>
+      <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
+    </div>
+
+    <!-- Mobile Button -->
+    <button id="menu-btn"
+      class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg
+             border border-blue-200 text-[#015b8a] hover:bg-blue-50 transition">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+       class="hidden md:hidden bg-white shadow-md border-t border-gray-100">
+    <a href="index.php#home" class="block px-6 py-3 hover:bg-gray-100">Home</a>
+    <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
+    <a href="index.php#species" class="block px-6 py-3 hover:bg-gray-100">Species</a>
+    <a href="index.php#threats" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
+    <a href="event.php" class="block px-6 py-3 hover:bg-gray-100">Events</a>
+    <a href="index.php#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
+  </div>
+</header>
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Auto close on desktop resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>
+
 
   <!-- Hero -->
   <section class="bg-ocean-gradient text-white py-32 px-6 relative overflow-hidden">
@@ -85,7 +113,7 @@
             <strong>Threat:</strong> 8–14M tons of plastic enter oceans yearly.<br>
             <strong>Solution:</strong> Use reusable bags, bottles, straws. Support plastic bans.
           </p>
-          <a href="event.html" class="mt-6 inline-block bg-gradient-to-r from-emerald-600 to-cyan-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <a href="event.php" class="mt-6 inline-block bg-gradient-to-r from-emerald-600 to-cyan-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             Join a Cleanup
           </a>
         </div>
@@ -100,7 +128,7 @@
             <strong>Threat:</strong> 33% of fish stocks overexploited.<br>
             <strong>Solution:</strong> Buy MSC-certified seafood. Support marine protected areas.
           </p>
-          <a href="event.html" class="mt-6 inline-block bg-gradient-to-r from-teal-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <a href="event.php" class="mt-6 inline-block bg-gradient-to-r from-teal-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             View Guide
           </a>
         </div>
@@ -115,7 +143,7 @@
             <strong>Threat:</strong> 90% of coral reefs at risk by 2050.<br>
             <strong>Solution:</strong> Reduce energy use, support renewables, plant mangroves.
           </p>
-          <a href="event.html" class="mt-6 inline-block bg-gradient-to-r from-cyan-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <a href="event.php" class="mt-6 inline-block bg-gradient-to-r from-cyan-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             Lower Your Impact
           </a>
         </div>
@@ -135,7 +163,7 @@
             <strong>Threat:</strong> Coastal development destroys ecosystems.<br>
             <strong>Solution:</strong> Support mangrove planting and artificial reefs.
           </p>
-          <a href="event.html" class="mt-6 inline-block bg-gradient-to-r from-lime-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <a href="event.php" class="mt-6 inline-block bg-gradient-to-r from-lime-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             Get Involved
           </a>
         </div>
@@ -150,7 +178,7 @@
             <strong>Threat:</strong> Fertilizers and toxins create dead zones.<br>
             <strong>Solution:</strong> Support eco-friendly farming and oil spill prevention.
           </p>
-          <a href="event.html" class="mt-6 inline-block bg-gradient-to-r from-sky-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <a href="event.php" class="mt-6 inline-block bg-gradient-to-r from-sky-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             Learn More
           </a>
         </div>
@@ -165,7 +193,7 @@
             <strong>Threat:</strong> Non-target species killed in fishing nets.<br>
             <strong>Solution:</strong> Use turtle excluders and circle hooks.
           </p>
-          <a href="event.html" class="mt-6 inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <a href="event.php" class="mt-6 inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             Explore Tech
           </a>
         </div>
@@ -178,13 +206,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     lucide.createIcons();
-
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      menuBtn.textContent = mobileMenu.classList.contains('hidden') ? 'Menu' : 'Close';
-    });
   </script>
+ 
 </body>
 </html>

@@ -12,13 +12,13 @@ if ($username === '' || $password === '') {
 }
 
 try {
-    // First: Check if user already exists
+    // Check if user exists
     $stmt = $pdo->prepare("SELECT id, password FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 
     if ($user) {
-        // User exists → check password (plain text)
+        // Login
         if ($password === $user['password']) {
             $_SESSION['user_id']   = $user['id'];
             $_SESSION['username']  = $username;
@@ -27,9 +27,16 @@ try {
             echo json_encode(['status'=>'error','message'=>'Wrong password']);
         }
     } else {
-        // User does NOT exist → AUTO REGISTER THEM!
-        $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->execute([$username, $password]);
+        // Auto-register new user
+        // We need to provide email because it's NOT NULL
+        // Option: use a placeholder like "noemail@example.com" or username + domain
+        $placeholderEmail = $username . '@example.com';  // simple & unique
+
+        $stmt = $pdo->prepare("
+            INSERT INTO users (username, email, password) 
+            VALUES (?, ?, ?)
+        ");
+        $stmt->execute([$username, $placeholderEmail, $password]);
 
         $newId = $pdo->lastInsertId();
         $_SESSION['user_id']   = $newId;
@@ -38,6 +45,7 @@ try {
         echo json_encode(['status'=>'success','message'=>'Account created & logged in!']);
     }
 } catch (Exception $e) {
-    echo json_encode(['status'=>'error','message'=>'Server error']);
+    // Optional: remove this in production, but helpful for debugging now
+    echo json_encode(['status'=>'error','message'=>'Server error: ' . $e->getMessage()]);
 }
 ?>

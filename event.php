@@ -32,40 +32,67 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 pt-20">
+<header class="fixed top-0 w-full bg-white shadow-md z-50 border-b border-blue-100">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
 
-  <!-- Navbar -->
-  <header class="fixed top-0 w-full bg-white shadow-md z-50 border-b border-blue-100">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center justify-center gap-3">
-        <i data-lucide="waves" class="w-12 h-12 text-[#015b8a] drop-shadow-md"></i>
-        <div class="text-4xl font-bold text-[#015b8a] tracking-wide drop-shadow-md" style="font-family: 'Apple Chancery', cursive;">
-          MantaFlow
-        </div>
+    <!-- Logo -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <i data-lucide="waves"
+         class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#015b8a] drop-shadow-md"></i>
+
+      <div class="text-xl sm:text-2xl md:text-4xl font-bold text-[#015b8a] tracking-wide drop-shadow-md"
+           style="font-family: 'Apple Chancery', cursive;">
+        MantaFlow
       </div>
-
-      <div class="hidden md:flex space-x-8 text-gray-700 font-medium">
-        <a href="index.php" class="hover:text-[#015b8a] transition">Home</a>
-        <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
-        <a href="index.php#species" class="hover:text-[#015b8a] transition">Species</a>
-        <a href="index.php#threats" class="hover:text-[#015b8a] transition">Threats</a>
-        <a href="event.php" class="nav-link-active hover:text-[#015b8a] transition">Events</a>
-        <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
-        <a href="index.php#admin" class="hover:text-[#015b8a] transition">Admin</a>
-      </div>
-      <button id="menu-btn" class="md:hidden text-[#015b8a] text-3xl">Menu</button>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-white shadow-md border-t border-gray-100 md:hidden">
-      <a href="index.php#home" class="block px-6 py-3 hover:bg-gray-100">Home</a>
-      <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
-      <a href="index.php#species" class="block px-6 py-3 hover:bg-gray-100">Species</a>
-      <a href="index.php#threats" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
-      <a href="event.php" class="block px-6 py-3 bg-blue-50 text-[#015b8a] font-semibold">Events</a>
-      <a href="index.php#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
-      <a href="index.php#admin" class="block px-6 py-3 hover:bg-gray-100">Admin</a>
     </div>
-  </header>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-8 text-gray-700 font-medium">
+      <a href="index.php" class="hover:text-[#015b8a] transition">Home</a>
+      <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
+      <a href="index.php#species" class="hover:text-[#015b8a] transition">Species</a>
+      <a href="index.php#threats" class="hover:text-[#015b8a] transition">Threats</a>
+      <a href="event.php" class="text-[#015b8a] font-semibold">Events</a>
+      <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button id="menu-btn"
+      class="md:hidden text-[#015b8a] text-3xl focus:outline-none">
+      ☰
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+       class="hidden bg-white shadow-md border-t border-gray-100 md:hidden">
+    <a href="index.php#home" class="block px-6 py-3 hover:bg-gray-100">Home</a>
+    <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
+    <a href="index.php#species" class="block px-6 py-3 hover:bg-gray-100">Species</a>
+    <a href="index.php#threats" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
+    <a href="event.php"
+       class="block px-6 py-3 bg-blue-50 text-[#015b8a] font-semibold">
+      Events
+    </a>
+    <a href="index.php#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
+  </div>
+</header>
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Auto close menu on desktop resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>
+
 
   <!-- Hero Section -->
   <section class="bg-ocean-gradient text-white py-24 px-6 relative overflow-hidden">
@@ -151,13 +178,7 @@
   <script>
     lucide.createIcons();
 
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      menuBtn.textContent = mobileMenu.classList.contains('hidden') ? 'Menu' : 'Close';
-    });
+   
 
     // Events Data
     const events = [

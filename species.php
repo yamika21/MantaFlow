@@ -67,33 +67,66 @@
   </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-teal-50 min-h-screen">
+<!-- Navbar -->
+<header class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 border-b border-blue-100">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
 
-  <!-- Navbar -->
-  <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 border-b border-blue-100">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <i data-lucide="waves" class="w-10 h-10 md:w-12 md:h-12 text-[#015b8a] drop-shadow-md"></i>
-        <div class="text-2xl md:text-4xl font-bold text-[#015b8a] tracking-wide drop-shadow-md playfair" style="font-family: 'Apple Chancery', cursive;">MantaFlow</div>
+    <!-- Logo -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <i data-lucide="waves"
+         class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#015b8a] drop-shadow-md"></i>
+      <div class="text-xl sm:text-2xl md:text-4xl font-bold text-[#015b8a] tracking-wide drop-shadow-md"
+           style="font-family: 'Apple Chancery', cursive;">
+        MantaFlow
       </div>
-      <div class="hidden md:flex space-x-6 lg:space-x-8 text-gray-700 font-medium text-sm lg:text-base">
-        <a href="/" class="hover:text-[#015b8a] transition">Home</a>
-        <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
-        <a href="species.php" class="text-[#015b8a] font-bold">Species</a>
-        <a href="Threats.php" class="hover:text-[#015b8a] transition">Threats</a>
-        <a href="event.php" class="hover:text-[#015b8a] transition">Events</a>
-        <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
-      </div>
-      <button id="menu-btn" class="md:hidden text-deep-ocean text-2xl">☰</button>
-    </nav>
-    <div id="mobile-menu" class="hidden bg-white/95 backdrop-blur-md shadow-lg md:hidden">
-      <a href="/" class="block px-6 py-3 hover:bg-gray-100">Home</a>
-      <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
-      <a href="species.php" class="block px-6 py-3 bg-blue-50 text-[#015b8a] font-bold">Species</a>
-      <a href="Threats.php" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
-      <a href="event.php" class="block px-6 py-3 hover:bg-gray-100">Events</a>
-      <a href="index.php#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
     </div>
-  </header>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-6 lg:space-x-8 text-gray-700 font-medium text-sm lg:text-base">
+      <a href="/" class="hover:text-[#015b8a] transition">Home</a>
+      <a href="index.php#about" class="hover:text-[#015b8a] transition">About</a>
+      <a href="species.php" class="text-[#015b8a] font-bold">Species</a>
+      <a href="Threats.php" class="hover:text-[#015b8a] transition">Threats</a>
+      <a href="event.php" class="hover:text-[#015b8a] transition">Events</a>
+      <a href="index.php#contact" class="hover:text-[#015b8a] transition">Contact</a>
+    </div>
+
+    <!-- Mobile Button -->
+    <button id="menu-btn"
+      class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg
+             border border-blue-200 text-[#015b8a] hover:bg-blue-50 transition"
+      aria-label="Toggle Menu">
+      ☰
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+       class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-100
+              transition-all duration-300">
+    <a href="/" class="block px-6 py-3 hover:bg-gray-100">Home</a>
+    <a href="index.php#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
+    <a href="species.php" class="block px-6 py-3 bg-blue-50 text-[#015b8a] font-bold">Species</a>
+    <a href="Threats.php" class="block px-6 py-3 hover:bg-gray-100">Threats</a>
+    <a href="event.php" class="block px-6 py-3 hover:bg-gray-100">Events</a>
+    <a href="index.php#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
+  </div>
+</header>
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Close menu when switching to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>
 
   <!-- Hero with Bubbles -->
   <section class="relative bg-ocean-gradient text-white py-24 md:py-32 px-6 overflow-hidden">
@@ -1277,14 +1310,6 @@
  <!-- Scripts -->
 <script>
   lucide.createIcons();
-
-  // Mobile Menu
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    menuBtn.textContent = mobileMenu.classList.contains('hidden') ? 'Menu' : 'Close';
-  });
 
   // Filter System
   const filterBtns = document.querySelectorAll('.filter-btn');
